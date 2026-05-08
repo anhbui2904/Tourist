@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hanoi local experiences | Tourguide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/landing-pro1.css" />
+  </head>
+  <body>
+    <div id="wl-drawer" class="wl-drawer" aria-hidden="true">
+      <div class="wl-drawer__panel" role="dialog" aria-label="Menu">
+        <button type="button" class="wl-drawer__close" data-drawer-close>Close</button>
+        <nav aria-label="Secondary">
+          <a href="../tours.html">Tours</a>
+          <a href="../contact.html">Contact</a>
+          <a href="../index.html">Main site (VI)</a>
+          <a href="../index-en.html">Main site (EN)</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="wl-page">
+      <header class="wl-header">
+        <div class="wl-header__bar">
+          <a class="wl-logo" href="../index-en.html" aria-label="Tourguide home">
+            <img src="../logogoctrai/logo1.png" alt="Tourguide" width="180" height="48" />
+          </a>
+          <div class="wl-header__actions">
+            <label class="visually-hidden" for="wl-currency">Currency</label>
+            <select id="wl-currency" class="wl-currency" aria-label="Currency">
+              <option value="usd">USD</option>
+              <option value="eur">EUR</option>
+              <option value="vnd">VND</option>
+            </select>
+            <label class="visually-hidden" for="wl-language">Language</label>
+            <select id="wl-language" class="wl-currency wl-language" aria-label="Language">
+              <option value="en" selected>EN</option>
+              <option value="vn">VN</option>
+            </select>
+            <a class="wl-signup" href="../contact.html">Sign up</a>
+            <button
+              type="button"
+              class="wl-menu-btn"
+              aria-label="Open menu"
+              data-drawer-open
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="wl-hero">
+        <div class="wl-hero__top">
+          <div class="wl-hero__grid">
+          <div class="wl-hero__copy">
+            <h1 class="wl-hero__title">Discover Hanoi through local eyes</h1>
+            <p class="wl-hero__lead">
+              Private and memorable travel experiences guided by friendly locals
+            </p>
+            <form class="wl-search" action="../tours.html" method="get" role="search">
+              <input
+                type="search"
+                name="q"
+                placeholder="Where are you going?"
+                aria-label="Search destination"
+                autocomplete="off"
+              />
+              <button type="submit" class="wl-search__btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-4.3-4.3" stroke-linecap="round" />
+                </svg>
+                Search
+              </button>
+            </form>
+            <p class="wl-trust">
+              <span class="wl-trust__stars" aria-hidden="true">★★★★★</span>
+              <span>Excellent — private tours &amp; local guides in Hanoi</span>
+            </p>
+          </div>
+
+          <div class="wl-visual" data-time-collage>
+            <div class="wl-collage">
+              <div class="wl-collage__media wl-collage__media--c1">
+                <img data-collage-img src="../image/toinay/hn1.jpeg" alt="" />
+              </div>
+              <div class="wl-collage__mid-col">
+                <div class="wl-collage__media wl-collage__media--c2t">
+                  <img data-collage-img src="../image/toinay/hn2.jpg" alt="" />
+                </div>
+                <div class="wl-collage__media wl-collage__media--c2b">
+                  <img data-collage-img src="../image/toinay/hn3.jpg" alt="" />
+                </div>
+              </div>
+              <div class="wl-collage__media wl-collage__media--c3t">
+                <img data-collage-img src="../image/toinay/hn4.jpg" alt="" />
+              </div>
+              <div class="wl-collage__media wl-collage__media--c3b">
+                <img data-collage-img src="../image/toinay/hn5.jpg" alt="" />
+              </div>
+              <div class="wl-loc" role="group" aria-label="Browse by time">
+                <button type="button" class="wl-loc__chev" data-time-prev aria-label="Previous time option">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <span id="wl-time-label" class="wl-loc__label">Tonight</span>
+                <button type="button" class="wl-loc__chev" data-time-next aria-label="Next time option">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="wl-hero__bottom">
+        <section class="wl-slogan" aria-labelledby="wl-slogan-heading">
+          <h2 id="wl-slogan-heading" class="wl-slogan__title">Go closer to Hanoi</h2>
+          <p class="wl-slogan__lead">
+            Find a private guided tour with someone who knows the city by heart
+          </p>
+        </section>
+
+        <div class="wl-cards-row">
+          <section class="wl-ct7" aria-label="Hanoi tonight — HN7 evening scene">
+            <article class="wl-ct7__card">
+              <div class="wl-ct7__media">
+                <div class="wl-ct7__top-bar">
+                  <div class="wl-ct7__avatars">
+                    <img src="https://i.pravatar.cc/80?img=47" alt="" width="40" height="40" />
+                    <img src="https://i.pravatar.cc/80?img=33" alt="" width="40" height="40" />
+                    <img src="https://i.pravatar.cc/80?img=45" alt="" width="40" height="40" />
+                    <span class="wl-ct7__avatar-more" aria-hidden="true">+36</span>
+                  </div>
+                </div>
+                <img
+                  class="wl-ct7__img"
+                  src="../image/toinay/hn7.jpg"
+                  alt="Hanoi at night — streets, lights, and evening atmosphere"
+                  width="640"
+                  height="800"
+                />
+              </div>
+              <div class="wl-ct7__body">
+                <p class="wl-ct7__copy">
+                  Discover the best ways to enjoy Hanoi after dark — from lively
+                  <strong>walking streets</strong> and <strong>street food</strong> to
+                  <strong>hidden bars</strong>, <strong>night markets</strong>, and
+                  <strong>unforgettable local experiences</strong>.
+                </p>
+                <div class="wl-ct7__footer">
+                  <div class="wl-ct7__avatars">
+                    <img src="https://i.pravatar.cc/80?img=22" alt="" width="40" height="40" />
+                    <img src="https://i.pravatar.cc/80?img=36" alt="" width="40" height="40" />
+                    <img src="https://i.pravatar.cc/80?img=41" alt="" width="40" height="40" />
+                    <span class="wl-ct7__avatar-more" aria-hidden="true">+36</span>
+                  </div>
+                  <a class="wl-ct7__btn" href="../../Tourguide/explore-hn7-tonight.html">Explore 3 tours</a>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        </div>
+      </main>
+
+    </div>
+
+    <style>
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+    <script>
+      (function () {
+        var drawer = document.getElementById("wl-drawer");
+        var openBtn = document.querySelector("[data-drawer-open]");
+        var closeBtn = drawer && drawer.querySelector("[data-drawer-close]");
+        if (!drawer || !openBtn || !closeBtn) return;
+        function openDrawer() {
+          drawer.classList.add("is-open");
+          drawer.setAttribute("aria-hidden", "false");
+        }
+        function closeDrawer() {
+          drawer.classList.remove("is-open");
+          drawer.setAttribute("aria-hidden", "true");
+        }
+        openBtn.addEventListener("click", openDrawer);
+        closeBtn.addEventListener("click", closeDrawer);
+        drawer.addEventListener("click", function (e) {
+          if (e.target === drawer) closeDrawer();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeDrawer();
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        var langSel = document.getElementById("wl-language");
+        if (!langSel) return;
+        langSel.value = "en";
+        langSel.addEventListener("change", function () {
+          if (langSel.value === "vn") {
+            window.location.href = "landing-pro1-vi.html";
+          }
+        });
+      })();
+    </script>
+    <script src="scripts/time-collage.js"></script>
+  </body>
+</html>

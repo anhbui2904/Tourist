@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trải nghiệm địa phương Hà Nội | Tourguide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/landing-pro1.css" />
+  </head>
+  <body>
+    <div id="wl-drawer" class="wl-drawer" aria-hidden="true">
+      <div class="wl-drawer__panel" role="dialog" aria-label="Menu">
+        <button type="button" class="wl-drawer__close" data-drawer-close>Đóng</button>
+        <nav aria-label="Phụ">
+          <a href="../tours.html">Tours</a>
+          <a href="../contact.html">Liên hệ</a>
+          <a href="../index.html">Trang chính (VI)</a>
+          <a href="../index-en.html">Trang chính (EN)</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="wl-page">
+      <header class="wl-header">
+        <div class="wl-header__bar">
+          <a class="wl-logo" href="../index.html" aria-label="Tourguide trang chủ">
+            <img src="../logogoctrai/logo1.png" alt="Tourguide" width="180" height="48" />
+          </a>
+          <div class="wl-header__actions">
+            <label class="visually-hidden" for="wl-currency">Tiền tệ</label>
+            <select id="wl-currency" class="wl-currency" aria-label="Tiền tệ">
+              <option value="usd">USD</option>
+              <option value="eur">EUR</option>
+              <option value="vnd">VND</option>
+            </select>
+            <label class="visually-hidden" for="wl-language">Ngôn ngữ</label>
+            <select id="wl-language" class="wl-currency wl-language" aria-label="Ngôn ngữ">
+              <option value="vn" selected>VN</option>
+              <option value="en">EN</option>
+            </select>
+            <a class="wl-signup" href="../contact.html">Đăng ký</a>
+            <button
+              type="button"
+              class="wl-menu-btn"
+              aria-label="Mở menu"
+              data-drawer-open
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="wl-hero">
+        <div class="wl-hero__top">
+          <div class="wl-hero__grid">
+          <div class="wl-hero__copy">
+            <h1 class="wl-hero__title">Khám phá Hà Nội qua đôi mắt người bản địa</h1>
+            <p class="wl-hero__lead">
+              Trải nghiệm du lịch riêng tư và đáng nhớ cùng hướng dẫn viên địa phương thân thiện
+            </p>
+            <form class="wl-search" action="../tours.html" method="get" role="search">
+              <input
+                type="search"
+                name="q"
+                placeholder="Bạn muốn đi đâu?"
+                aria-label="Tìm điểm đến"
+                autocomplete="off"
+              />
+              <button type="submit" class="wl-search__btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-4.3-4.3" stroke-linecap="round" />
+                </svg>
+                Tìm kiếm
+              </button>
+            </form>
+            <p class="wl-trust">
+              <span class="wl-trust__stars" aria-hidden="true">★★★★★</span>
+              <span>Xuất sắc — tour riêng &amp; hướng dẫn viên địa phương tại Hà Nội</span>
+            </p>
+          </div>
+
+          <div class="wl-visual" data-time-collage>
+            <div class="wl-collage">
+              <div class="wl-collage__media wl-collage__media--c1">
+                <img data-collage-img src="../image/toinay/hn1.jpeg" alt="" />
+              </div>
+              <div class="wl-collage__mid-col">
+                <div class="wl-collage__media wl-collage__media--c2t">
+                  <img data-collage-img src="../image/toinay/hn2.jpg" alt="" />
+                </div>
+                <div class="wl-collage__media wl-collage__media--c2b">
+                  <img data-collage-img src="../image/toinay/hn3.jpg" alt="" />
+                </div>
+              </div>
+              <div class="wl-collage__media wl-collage__media--c3t">
+                <img data-collage-img src="../image/toinay/hn4.jpg" alt="" />
+              </div>
+              <div class="wl-collage__media wl-collage__media--c3b">
+                <img data-collage-img src="../image/toinay/hn5.jpg" alt="" />
+              </div>
+              <div class="wl-loc" role="group" aria-label="Chọn theo thời gian">
+                <button type="button" class="wl-loc__chev" data-time-prev aria-label="Mục thời gian trước">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <span id="wl-time-label" class="wl-loc__label">Tối nay</span>
+                <button type="button" class="wl-loc__chev" data-time-next aria-label="Mục thời gian kế">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="wl-hero__bottom">
+        <section class="wl-slogan" aria-labelledby="wl-slogan-heading">
+          <h2 id="wl-slogan-heading" class="wl-slogan__title">Đến gần Hà Nội hơn</h2>
+          <p class="wl-slogan__lead">
+            Tìm tour riêng có hướng dẫn viên thực sự am hiểu từng góc phố thành phố
+          </p>
+        </section>
+
+        <div class="wl-cards-row">
+          <section class="wl-ct7" aria-label="Hà Nội tối nay — khung cảnh HN7">
+            <article class="wl-ct7__card">
+              <div class="wl-ct7__media">
+                <div class="wl-ct7__top-bar">
+                  <div class="wl-ct7__avatars">
+                    <img src="https://i.pravatar.cc/80?img=47" alt="" width="40" height="40" />
+                    <img src="https://i.pravatar.cc/80?img=33" alt="" width="40" height="40" />
+                    <img src="https://i.pravatar.cc/80?img=45" alt="" width="40" height="40" />
+                    <span class="wl-ct7__avatar-more" aria-hidden="true">+36</span>
+                  </div>
+                </div>
+                <img
+                  class="wl-ct7__img"
+                  src="../image/toinay/hn7.jpg"
+                  alt="Hà Nội về đêm — phố đèn, nhịp tối"
+                  width="640"
+                  height="800"
+                />
+              </div>
+              <div class="wl-ct7__body">
+                <p class="wl-ct7__copy">
+                  Khám phá Hà Nội sau hoàng hôn — từ những
+                  <strong>phố đi bộ</strong> nhộn nhịp và <strong>ẩm thực đường phố</strong> đến
+                  <strong>quán bar khuất lối</strong>, <strong>chợ đêm</strong> và
+                  <strong>trải nghiệm địa phương khó quên</strong>.
+                </p>
+                <div class="wl-ct7__footer">
+                  <div class="wl-ct7__avatars">
+                    <img src="https://i.pravatar.cc/80?img=22" alt="" width="40" height="40" />
+                    <img src="https://i.pravatar.cc/80?img=36" alt="" width="40" height="40" />
+                    <img src="https://i.pravatar.cc/80?img=41" alt="" width="40" height="40" />
+                    <span class="wl-ct7__avatar-more" aria-hidden="true">+36</span>
+                  </div>
+                  <a class="wl-ct7__btn" href="../../Tourguide/explore-hn7-tonight-vi.html">Khám phá 3 tour</a>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        </div>
+      </main>
+
+    </div>
+
+    <style>
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+    <script>
+      (function () {
+        var drawer = document.getElementById("wl-drawer");
+        var openBtn = document.querySelector("[data-drawer-open]");
+        var closeBtn = drawer && drawer.querySelector("[data-drawer-close]");
+        if (!drawer || !openBtn || !closeBtn) return;
+        function openDrawer() {
+          drawer.classList.add("is-open");
+          drawer.setAttribute("aria-hidden", "false");
+        }
+        function closeDrawer() {
+          drawer.classList.remove("is-open");
+          drawer.setAttribute("aria-hidden", "true");
+        }
+        openBtn.addEventListener("click", openDrawer);
+        closeBtn.addEventListener("click", closeDrawer);
+        drawer.addEventListener("click", function (e) {
+          if (e.target === drawer) closeDrawer();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeDrawer();
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        var langSel = document.getElementById("wl-language");
+        if (!langSel) return;
+        langSel.addEventListener("change", function () {
+          if (langSel.value === "en") {
+            window.location.href = "landing-pro1.html";
+          }
+        });
+      })();
+    </script>
+    <script src="scripts/time-collage-vi.js"></script>
+  </body>
+</html>
