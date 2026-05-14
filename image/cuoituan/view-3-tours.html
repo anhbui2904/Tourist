@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View 3 tours</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        overflow-x: hidden;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: #0b0b0b;
+      }
+
+      :root {
+        --ink: #171514;
+        --ink-mid: #3d3a37;
+        --stone: #6f6c68;
+        --line: rgba(23, 21, 20, 0.12);
+        --accent: #2c2622;
+
+        --lux-nav-px: 12px;
+        --lux-weekend-label-px: 12px;
+        --lux-diamond-px: 12px;
+
+        --bar-t: 0.68s;
+        --bar-ease: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .scene-split {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .scene-split__video-wrap {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .scene-split__video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .scene-split__overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 3;
+        min-height: 30vh;
+        max-height: min(55vh, 100%);
+        background-color: transparent;
+        transition: background-color var(--bar-t) var(--bar-ease);
+        --bar-fg: #ffffff;
+        --bar-fg-muted: rgba(255, 255, 255, 0.72);
+        --bar-border: rgba(255, 255, 255, 0.22);
+      }
+
+      @media (hover: hover) {
+        .scene-split__overlay:hover {
+          background-color: rgba(252, 250, 247, 0.97);
+          --bar-fg: #2c2622;
+          --bar-fg-muted: #6f6c68;
+          --bar-border: rgba(23, 21, 20, 0.12);
+        }
+      }
+
+      .scene-split__overlay:focus-within {
+        background-color: rgba(252, 250, 247, 0.97);
+        --bar-fg: #2c2622;
+        --bar-fg-muted: #6f6c68;
+        --bar-border: rgba(23, 21, 20, 0.12);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .scene-split__overlay {
+          transition-duration: 0.01ms;
+        }
+        .lux-strip,
+        .lux-nav-tier1,
+        .lux-nav-tier2,
+        .lux-eyebrow,
+        .lux-diamond,
+        .lux-strip a {
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      .lux-strip {
+        height: 100%;
+        min-height: 30vh;
+        overflow-y: auto;
+        overflow-x: visible;
+        padding: clamp(0.65rem, 2.2vh, 1rem) clamp(1.35rem, 5vw, 3.75rem)
+          clamp(0.55rem, 2vh, 1rem);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.55rem, 2vh, 1.05rem);
+        color: var(--bar-fg);
+        transition: color var(--bar-t) var(--bar-ease);
+      }
+
+      .lux-strip a {
+        color: inherit;
+        text-decoration: none;
+        transition: opacity 0.22s ease, color var(--bar-t) var(--bar-ease);
+      }
+
+      .lux-strip a:hover {
+        opacity: 0.54;
+      }
+
+      .lux-strip a:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: 3px;
+      }
+
+      .lux-strip__mast {
+        flex-shrink: 0;
+      }
+
+      .lux-nav-tier1 {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 0.6rem clamp(1rem, 4vw, 3.5rem);
+        font-family: "Jost", system-ui, sans-serif;
+        font-size: var(--lux-nav-px);
+        font-weight: 500;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: inherit;
+        transition: color var(--bar-t) var(--bar-ease);
+      }
+
+      .lux-nav-tier1 > a:first-child {
+        justify-self: start;
+        text-align: left;
+        min-width: 0;
+      }
+
+      .lux-nav-tier1 > a:nth-child(2) {
+        justify-self: center;
+        text-align: center;
+        white-space: nowrap;
+        font-size: calc(var(--lux-nav-px) * 1.69);
+      }
+
+      .lux-tier1-tail {
+        justify-self: end;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: clamp(0.85rem, 4vw, 2.65rem);
+        min-width: 0;
+        text-align: right;
+      }
+
+      .lux-tier1-tail-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: clamp(0.85rem, 4vw, 2.65rem);
+        justify-content: flex-end;
+      }
+
+      .lux-nav-tier2 {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem clamp(0.55rem, 2.2vw, 1rem);
+        margin-top: clamp(0.58rem, 2vh, 0.92rem);
+        font-family: "Jost", system-ui, sans-serif;
+        font-size: var(--lux-nav-px);
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: inherit;
+        line-height: 1.45;
+        transition: color var(--bar-t) var(--bar-ease);
+      }
+
+      .lux-diamond {
+        color: var(--bar-fg-muted);
+        font-size: var(--lux-diamond-px);
+        user-select: none;
+        opacity: 0.9;
+        position: relative;
+        top: -0.04em;
+        transition: color var(--bar-t) var(--bar-ease);
+      }
+
+      .lux-editorial {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(0.35rem, 1.3vh, 0.62rem);
+        padding-top: 0.1rem;
+        border-top: 1px solid var(--bar-border);
+        transition: border-color var(--bar-t) var(--bar-ease);
+      }
+
+      .lux-eyebrow {
+        margin: 0;
+        font-family: "Jost", system-ui, sans-serif;
+        font-size: var(--lux-weekend-label-px);
+        font-weight: 600;
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: var(--bar-fg-muted);
+        transition: color var(--bar-t) var(--bar-ease);
+      }
+
+      .lux-eyebrow--trail {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.45rem clamp(0.55rem, 2.2vw, 1rem);
+        color: var(--bar-fg);
+      }
+
+      /* —— Slogan + scroll (trên video, tham khảo Belmond hero) —— */
+      .hero-stack {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: clamp(52vh, 56vh, 64vh);
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 1.5rem clamp(2.25rem, 7vh, 4.25rem);
+        pointer-events: none;
+      }
+
+      .hero-stack__bundle {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(1.35rem, 4.2vh, 2rem);
+        min-height: 0;
+        pointer-events: none;
+      }
+
+      .hero-stack__bundle > * {
+        pointer-events: auto;
+      }
+
+      .hero-tagline {
+        margin: 0;
+        max-width: clamp(24rem, 94vw, 62rem);
+        font-family: "Jost", system-ui, sans-serif;
+        font-size: clamp(1.71875rem, 4.875vw, 1.953125rem);
+        font-weight: 500;
+        letter-spacing: 0.34em;
+        line-height: 1.75;
+        text-transform: uppercase;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.96);
+      }
+
+      .hero-cta {
+        display: inline-block;
+        margin-top: -20px;
+        font-family: "Jost", system-ui, sans-serif;
+        font-size: clamp(0.59375rem, 1.6vw, 0.65625rem);
+        font-weight: 700;
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.97);
+        text-decoration: none;
+        padding: 0.7rem clamp(1.35rem, 4vw, 1.95rem);
+        border: 1.5px solid rgba(255, 255, 255, 0.86);
+        background: transparent;
+        transition: opacity 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+      }
+
+      .hero-cta:hover {
+        opacity: 0.78;
+      }
+
+      .hero-cta:focus-visible {
+        outline: 1px solid #fff;
+        outline-offset: 4px;
+      }
+
+      /* Mũi tên trong vòng tròn viền mảnh (~38px như kiểu tham khảo) */
+      .hero-scroll {
+        margin-top: auto;
+        pointer-events: auto;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.94);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        padding: 0;
+        text-decoration: none;
+        transition: opacity 0.22s ease, border-color 0.22s ease;
+      }
+
+      .hero-scroll:hover {
+        opacity: 0.78;
+      }
+
+      .hero-scroll:focus-visible {
+        outline: 1px solid #fff;
+        outline-offset: 4px;
+      }
+
+      .hero-scroll__chev {
+        width: 12px;
+        height: 12px;
+        display: block;
+      }
+
+      .hero-scroll__chev-path {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.475;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .weekend-more {
+        min-height: 55vh;
+        padding: clamp(3rem, 10vw, 5rem) clamp(1.5rem, 6vw, 4rem);
+        background: #f6f6f5;
+        color: var(--accent);
+      }
+
+      .weekend-more h2 {
+        margin: 0 0 0.85rem;
+        font-family: "Jost", system-ui, sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .weekend-more p {
+        margin: 0;
+        max-width: 40rem;
+        font-family: "Jost", system-ui, sans-serif;
+        font-size: 1rem;
+        line-height: 1.62;
+        color: var(--ink-mid);
+      }
+
+      @media (max-width: 540px) {
+        .lux-nav-tier1 {
+          grid-template-columns: 1fr;
+          justify-items: start;
+          text-align: left;
+        }
+
+        .lux-nav-tier1 > a:first-child {
+          justify-self: start;
+        }
+
+        .lux-nav-tier1 > a:nth-child(2) {
+          justify-self: start;
+          text-align: left;
+        }
+
+        .lux-tier1-tail {
+          justify-self: start;
+          justify-content: flex-start;
+          text-align: left;
+          width: 100%;
+        }
+
+        .lux-tier1-tail-inner {
+          justify-content: flex-start;
+          width: 100%;
+          gap: 1rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scene-split" id="hero">
+      <div class="scene-split__video-wrap">
+        <video
+          class="scene-split__video"
+          src="vid3.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-hidden="true"
+        ></video>
+      </div>
+
+      <div class="hero-stack">
+        <div class="hero-stack__bundle">
+          <p class="hero-tagline">
+            Discover lands made for&nbsp;your weekend escapes
+          </p>
+          <a class="hero-cta" href="#weekend-more">Learn more</a>
+        </div>
+        <a
+          href="#weekend-more"
+          class="hero-scroll"
+          aria-label="Scroll to content below"
+        >
+          <svg
+            class="hero-scroll__chev"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              class="hero-scroll__chev-path"
+              d="M7.25 10.75 L12 15.25 L16.75 10.75"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <div class="scene-split__overlay">
+        <div class="lux-strip">
+          <header class="lux-strip__mast">
+            <nav class="lux-nav-tier1" aria-label="Primary">
+              <a href="#">Search</a>
+              <a href="#">Hanoi local tours</a>
+              <div class="lux-tier1-tail">
+                <div class="lux-tier1-tail-inner">
+                  <a href="#">English&nbsp;▾</a>
+                  <a href="#">Line</a>
+                  <a href="#">Book</a>
+                </div>
+              </div>
+            </nav>
+            <nav class="lux-nav-tier2" aria-label="Weekend collection routes">
+              <a href="#">Overview</a>
+              <span class="lux-diamond" aria-hidden="true">◆</span>
+              <a href="#">Contact</a>
+            </nav>
+          </header>
+
+          <section class="lux-editorial">
+            <p class="lux-eyebrow">Weekend collection</p>
+            <p class="lux-eyebrow lux-eyebrow--trail">
+              <span>Ninh Binh weekend escape</span>
+              <span class="lux-diamond" aria-hidden="true">◆</span>
+              <span>Hanoi Weekend Signature</span>
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <main id="weekend-more" class="weekend-more" tabindex="-1">
+      <h2>Your Weekend, Reimagined</h2>
+      <p>
+        Escape the ordinary with curated local journeys designed for the curious soul.
+      </p>
+    </main>
+  </body>
+</html>
